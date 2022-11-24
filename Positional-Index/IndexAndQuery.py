@@ -60,6 +60,5 @@ Eg. :
 '''
 query = 'Provide Query As a String Here'
 
-# The Following Dictionary Contains All Documents Relevants and Respective Indexes to Query Retrieved through Boolean Retrieval Model
+# The Following List Contains All Documents Relevant to Query Retrieved through Phrase Query Search
 relevant_docs = phrase_query(positional_index,query)
-
