@@ -3,8 +3,7 @@ Python 3.0
 Retrieve Relevant Documents for a Query using Boolean Retrieval Model
 '''
 
-import nltk
-from InvertedIndex import Inverted_Index_Fn
+from InvertedIndex import Inverted_Index_Fn,PreProcess
 
 def BooleanRetrievelModel(inverted_index,query_terms,booloperand):
     try:
@@ -34,12 +33,6 @@ def BooleanRetrievelModel(inverted_index,query_terms,booloperand):
         - Remove All Punctuations
         - Convert to Lower Case
 '''
-def PreProcessQuery(query):
-    tokenizer = nltk.RegexpTokenizer(r"\w+")
-    query = ' '.join(tokenizer.tokenize(query))
-    query = query.lower().split()
-    return query
-
 
 # Add the Relevant File/Folder Paths
 stopwords_path = 'Enter The Full Path to Folder with File containing Stop Words'
@@ -54,8 +47,7 @@ booloperand = ''
 
 # Pre-Processing the String
 query = 'Provide Query As a String Here'
-query = PreProcessQuery(query)
+query = PreProcess(query)
 
 # The Following List Contains All Documents Relevant to Query Retrieved through Boolean Retrieval Model
 relevant_docs = BooleanRetrievelModel(inverted_index,query,booloperand)
-

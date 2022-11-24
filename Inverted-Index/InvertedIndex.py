@@ -11,31 +11,15 @@ collection_path = 'Enter The Full Path to Folder with Document Collection'
 import os
 import nltk
 
+# Tokenizer to keep only Alpha-Numeric Words  [a-zA-Z0-9_]
+tokenizer = nltk.RegexpTokenizer(r"\w+")
+
+def PreProcess(doc_data):
+    doc_data = ' '.join(tokenizer.tokenize(doc_data))
+    doc_data = doc_data.lower()
+    return doc_data
+
 def Inverted_Index_Fn(stopwords_path,stopwords_filename,collection_path):
-    # Getting StopWords from a File (Optional)
-    '''
-    For Windows Users, Use the following line of code to open file  
-        with open(path+'\'+filename) as f:
-    '''
-    with open(stopwords_path+'/'+stopwords_filename) as f:
-        stopwords = f.read().split('\n')
-        
-    #Changing Working Directory to the Folder that contains Document Collection 
-    os.chdir(collection_path)
-
-    # Tokenizer to keep only Alpha-Numeric Words  [a-zA-Z0-9_]
-    tokenizer = nltk.RegexpTokenizer(r"\w+")
-
-    '''
-    Pre-Process Document Data
-        - Remove All Punctuations
-        - Convert to Lower Case
-    '''
-    def preprocess(doc_data):
-        doc_data = ' '.join(tokenizer.tokenize(doc_data))
-        doc_data = doc_data.lower()
-        return doc_data
-
     '''
     Inverted Index to store Data as a Dictionary of Format :
     { 
@@ -47,6 +31,23 @@ def Inverted_Index_Fn(stopwords_path,stopwords_filename,collection_path):
     }
     '''
     inverted_index = {}
+    
+    # Getting StopWords from a File (Optional)
+    '''
+    For Windows Users, Use the following line of code to open file  
+        with open(path+'\'+filename) as f:
+    '''
+    with open(stopwords_path+'/'+stopwords_filename) as f:
+        stopwords = f.read().split('\n')
+        
+    #Changing Working Directory to the Folder that contains Document Collection 
+    os.chdir(collection_path)
+
+    '''
+    Pre-Process Document Data
+        - Remove All Punctuations
+        - Convert to Lower Case
+    '''
 
     # Function to Create Inverted Index
     def create_inverted_index(doc_data,docid):
@@ -71,9 +72,8 @@ def Inverted_Index_Fn(stopwords_path,stopwords_filename,collection_path):
             file_path = f"./{file}"
             with open(file_path, "r") as f:
                 doc_data = f.read()
-            doc_data = preprocess(doc_data)
+            doc_data = PreProcess(doc_data)
             create_inverted_index(doc_data,file[:-4]) # [:-4] to Remove '.txt' from FileName which will be used as DocId
 
     # Return the Inverted Index
     return inverted_index
-
