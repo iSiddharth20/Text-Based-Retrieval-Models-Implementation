@@ -7,6 +7,18 @@ import os
 import nltk
 
 def Positional_IndexFn(stopwords_path,stopwords_filename,collection_path):
+    '''
+    Positional Index to store Data as a Dictionary of Format :
+    { 
+        term1 : [ (DocId1,[index1,index2,...]) , (DocId2,[index1,index2,...]) , ... ] 
+        term2 : [ (DocId1,[index1,index2,...]) , (DocId2,[index1,index2,...]) , ... ] 
+        .
+        .
+        .
+    }
+    '''
+    positional_index = {}
+    
     # Getting StopWords from a File (Optional)
     '''
     For Windows Users, Use the following line of code to open file  
@@ -26,24 +38,10 @@ def Positional_IndexFn(stopwords_path,stopwords_filename,collection_path):
         - Remove All Punctuations
         - Convert to Lower Case
     '''
-    def preprocess(doc_data):
+    def PreProcess(doc_data):
         doc_data = ' '.join(tokenizer.tokenize(doc_data))
         doc_data = doc_data.lower()
         return doc_data
-
-    '''
-    Positional Index to store Data as a Dictionary of Format :
-    { 
-        term1 : [ (DocId1,[index1,index2,...]) , (DocId2,[index1,index2,...]) , ... ] 
-        term2 : [ (DocId1,[index1,index2,...]) , (DocId2,[index1,index2,...]) , ... ] 
-        .
-        .
-        .
-    }
-    '''
-    positional_index = {}
-    # A List to Store All File Names
-    all_file_names = []
 
     # Obtain All Indexes of a Term in a Document
     # The position of the first word in the document by convention is taken as 1
@@ -67,7 +65,6 @@ def Positional_IndexFn(stopwords_path,stopwords_filename,collection_path):
                     pass
                 else:
                     positional_index[term][docid] = term_indexes(term,doc_data.split())
-        all_file_names.append(docid)
 
     '''
     Reading, Pre-Processing Document Collection and Creating Inverted Index
@@ -81,9 +78,8 @@ def Positional_IndexFn(stopwords_path,stopwords_filename,collection_path):
             file_path = f"./{file}"
             with open(file_path, "r") as f:
                 doc_data = f.read()
-            doc_data = preprocess(doc_data)
+            doc_data = PreProcess(doc_data)
             create_positional_index(doc_data,file[:-4]) # [:-4] to Remove '.txt' from FileName which will be used as DocId
 
-    # Return the Inverted Index and List of All File Names
-    return positional_index,all_file_names
-
+    # Return the Positional Index
+    return positional_index

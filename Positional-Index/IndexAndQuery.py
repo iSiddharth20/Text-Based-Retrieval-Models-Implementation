@@ -43,7 +43,7 @@ stopwords_path = 'Enter The Full Path to Folder with File containing Stop Words'
 stopwords_filename = 'File Name of the File with Stop Words (With Extention)'
 collection_path = 'Enter The Full Path to Folder with Document Collection'
 
-# Create Inverted Index 
+# Create Positional Index 
 positional_index = Positional_IndexFn(stopwords_path,stopwords_filename,collection_path)
 
 '''
