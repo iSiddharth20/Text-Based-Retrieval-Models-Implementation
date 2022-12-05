@@ -1,6 +1,11 @@
 '''
 Python 3.0
 Build Positional Index
+
+stopwords_path = 'Enter The Full Path to Folder with File containing Stop Words'
+stopwords_filename = 'File Name of the File with Stop Words (With Extention)'
+collection_path = 'Enter The Full Path to Folder with Document Collection'
+
 '''
 # Importing Necessary Libraries
 import os
