@@ -152,6 +152,7 @@ def Build_Clusterpruning_Index():
     leaders_no = math.ceil(math.sqrt(len(docs)))
     leaders = set(random.sample(list(docs), leaders_no))
     new_corpus = {docid: corpus[docid] for docid in leaders}
+    ln_corpus = len(new_corpus)
     term_freq_nc = Counter({})
     for doc in new_corpus:
         term_freq_nc += Counter(new_corpus[doc])
@@ -162,7 +163,7 @@ def Build_Clusterpruning_Index():
             if term not in stopwords:
                 term_indxs_lst[term].append(i+1)
         for term in term_indxs_lst:
-            tf , idf = tfidf_val_calc(term,term_indxs_lst)
+            tf , idf = tfidf_val_calc(term,term_indxs_lst,ln_corpus,term_freq_nc)
             wt = round((tf*idf),8)
             if len(index[term]) == 0:
                 clusterpruning_index[term].append(idf)
