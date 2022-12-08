@@ -141,7 +141,7 @@ def Create_Champion_List(index,R):
     champion_list = defaultdict(list)
     for term in index:
         # Sorts on the Basis of Term Weight in the Document
-        lst = sorted(index[term][1:], key=lambda k: k[1], reverse=True)
+        lst = sorted(index[term][1:], key=lambda k: k[1], reverse=True)[:R]
         champion_list[term] = lst
     return champion_list
 
