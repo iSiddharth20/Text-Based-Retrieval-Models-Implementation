@@ -71,7 +71,7 @@ def tfidf_val_calc(term,term_indxs_lst,ln_corpus,term_freq_c):
     return tf,idf
 
 # Function to Calculate Query Vector
-def Query_Vector_Generator(query):
+def Query_Vector_Generator(query,index):
     query = PreProcess(query)
     query = query.split()
     query_vector = defaultdict(lambda: 0)
@@ -165,7 +165,7 @@ def Build_Clusterpruning_Index():
         for term in term_indxs_lst:
             tf , idf = tfidf_val_calc(term,term_indxs_lst,ln_corpus,term_freq_nc)
             wt = round((tf*idf),8)
-            if len(index[term]) == 0:
+            if len(clusterpruning_index[term]) == 0:
                 clusterpruning_index[term].append(idf)
             clusterpruning_index[term].append([docId, wt, term_indxs_lst[term]])
     return clusterpruning_index

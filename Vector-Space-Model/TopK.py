@@ -24,12 +24,12 @@ def TopK_CosineScore(query_vector,k,index):
     return TopK_Documents
 
 def ExactQuerySearch(query,N):
-    query_vector = Query_Vector_Generator(query)
+    query_vector = Query_Vector_Generator(query,index)
     ans = TopK_CosineScore(query_vector,N,index)
     return ans
 
 def ChampionListSearch(query,N):
-    query_vector = Query_Vector_Generator(query)
+    query_vector = Query_Vector_Generator(query,index)
     ans = TopK_CosineScore(query_vector,N,champion_list)
     return ans
 
@@ -38,12 +38,12 @@ def IndexEliminationSearch(query,N):
     newindex = {term : index[term] for term in query_terms}
     newindex = dict(sorted(newindex.items(), key= lambda x: x[1], reverse= True)[:int(len(query_terms)/2)])
     query = ' '.join(newindex.keys())
-    query_vector = Query_Vector_Generator(query)
+    query_vector = Query_Vector_Generator(query,newindex)
     ans = TopK_CosineScore(query_vector,N,newindex)
     return ans
 
 def ClusterPruningSearch(query,N):
-    query_vector = Query_Vector_Generator(query)
+    query_vector = Query_Vector_Generator(query,clusterpruning_index)
     ans = TopK_CosineScore(query_vector,N,clusterpruning_index)
     return ans
 
