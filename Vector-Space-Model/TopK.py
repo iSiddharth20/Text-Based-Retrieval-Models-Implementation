@@ -51,15 +51,16 @@ def ClusterPruningSearch(query,N):
 index = Create_IndexFn(stopwords_path,stopwords_filename,collection_path)
 
 # Create Champion List 
-champion_list = Create_Champion_List(index,15)
+R = 15 # Change this to Required Integer Value
+champion_list = Create_Champion_List(index,R)
 
 # Create Cluster Pruning Index
 clusterpruning_index = Build_Clusterpruning_Index()
 
 # Retrieve Relevant Documents
 query = 'Provide Query As a String Here'
-
-Results_ExactSearch = ExactQuerySearch('jordan john british up',10)
-Results_ChampionList = ChampionListSearch('jordan john british up',10)
-Results_IndexElimination = IndexEliminationSearch('jordan john british up',10)
-Results_ClusterPruning = ClusterPruningSearch('jordan john british up',10)
+k = 10 # Change this to Required Integer Value
+Results_ExactSearch = ExactQuerySearch(query,k)
+Results_ChampionList = ChampionListSearch(query,k)
+Results_IndexElimination = IndexEliminationSearch(query,k)
+Results_ClusterPruning = ClusterPruningSearch(query,k)
