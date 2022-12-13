@@ -2,6 +2,7 @@
 ***
 
 + Python 3.0
++ Required Dependencies : nltk (Only for RegexpTokenizer)
 + Can add Custom Stop Words List
 + CreateIndex.py : 
     - Creates Required Index
