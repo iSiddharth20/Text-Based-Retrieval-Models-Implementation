@@ -4,6 +4,7 @@
 ### Positional Index and Phrase Query Search
 
 + Python 3.0
++ Required Dependencies : nltk (Only for RegexpTokenizer)
 + Can add Custom Stop Words List
 + PositionalIndex.py : 
     - Only Creates Positional Index
