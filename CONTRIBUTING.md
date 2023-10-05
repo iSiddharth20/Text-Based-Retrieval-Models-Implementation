@@ -1,6 +1,6 @@
-# Contributing to [Information-Retrieval]
+# Contributing to [Information-Retrieval](https://github.com/iSiddharth20/Information-Retrieval)
 
-Thank you for considering contributing to [Information-Retrieval]! Your Effort and Contributions are crucial for the success of this project and greatly appreciated. Below you'll find the process and guidelines for contributing.
+Thank you for considering contributing to [Information-Retrieval](https://github.com/iSiddharth20/Information-Retrieval)! Your Effort and Contributions are crucial for the success of this project and greatly appreciated. Below you'll find the process and guidelines for contributing.
 
 ### Pull Requests
 - Fork the repository.
